@@ -1,0 +1,43 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.section.general-section label {
+  display: block;
+  margin-bottom: 8px;
+}
+.section.general-section input {
+  display: block;
+  width: 100%;
+  padding: 6px;
+  margin-top: 4px;
+}
+
+.section.education-section label {
+  display: block;
+  margin-bottom: 8px;
+}
+.section.education-section input {
+  display: block;
+  width: 100%;
+  padding: 6px;
+  margin-top: 4px;
+}
+
+.section.practical-section label {
+  display: block;
+  margin-bottom: 8px;
+}
+.section.practical-section input,
+.section.practical-section textarea {
+  display: block;
+  width: 100%;
+  padding: 6px;
+  margin-top: 4px;
+}
+.section.practical-section textarea {
+  min-height: 80px;
+}
