@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function GeneralInfo() {
+export default function GeneralInfo({ onSubmit }) {
   const [editing, setEditing] = useState(true);
   const [form, setForm] = useState({ name: "", email: "", phone: "" });
   const [submitted, setSubmitted] = useState(null);
@@ -14,6 +14,7 @@ export default function GeneralInfo() {
     e.preventDefault();
     setSubmitted(form);
     setEditing(false);
+    if (onSubmit) onSubmit(form); // send data to App for preview
   }
 
   function handleEdit() {
@@ -52,7 +53,7 @@ export default function GeneralInfo() {
               name="phone"
               value={form.phone}
               onChange={handleChange}
-              placeholder="+44 7..."
+              placeholder="000-000-0000"
             />
           </label>
 
@@ -69,7 +70,9 @@ export default function GeneralInfo() {
           <p>
             <strong>Phone:</strong> {submitted?.phone}
           </p>
-          <button onClick={handleEdit}>Edit</button>
+          <button className="edit" onClick={handleEdit}>
+            Edit
+          </button>
         </div>
       )}
     </section>

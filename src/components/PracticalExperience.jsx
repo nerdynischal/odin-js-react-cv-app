@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function PracticalExperience() {
+export default function PracticalExperience({ onSubmit }) {
   const [editing, setEditing] = useState(true);
   const [form, setForm] = useState({
     company: "",
@@ -20,6 +20,7 @@ export default function PracticalExperience() {
     e.preventDefault();
     setSubmitted(form);
     setEditing(false);
+    if (onSubmit) onSubmit(form); // send data to App for preview
   }
 
   function handleEdit() {
@@ -101,7 +102,9 @@ export default function PracticalExperience() {
           <p>
             <strong>Until:</strong> {submitted?.dateUntil}
           </p>
-          <button onClick={handleEdit}>Edit</button>
+          <button className="edit" onClick={handleEdit}>
+            Edit
+          </button>
         </div>
       )}
     </section>

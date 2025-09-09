@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function Education() {
+export default function Education({ onSubmit }) {
   const [editing, setEditing] = useState(true);
   const [form, setForm] = useState({
     school: "",
@@ -18,6 +18,7 @@ export default function Education() {
     e.preventDefault();
     setSubmitted(form);
     setEditing(false);
+    if (onSubmit) onSubmit(form); // send data to App for preview
   }
 
   function handleEdit() {
@@ -73,7 +74,9 @@ export default function Education() {
           <p>
             <strong>Date of Study:</strong> {submitted?.date}
           </p>
-          <button onClick={handleEdit}>Edit</button>
+          <button className="edit" onClick={handleEdit}>
+            Edit
+          </button>
         </div>
       )}
     </section>
