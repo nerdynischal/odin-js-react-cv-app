@@ -1,31 +1,29 @@
 import React, { useState } from "react";
-import EditExperience from "./EditExperience";
+import EditEducation from "./EditEducation";
 
-export default function ExperienceItem({ job, index, onUpdate, onDelete }) {
+export default function EducationItem({ edu, index, onUpdate, onDelete }) {
   const [editing, setEditing] = useState(false);
 
-  function handleSave(updatedJob) {
-    onUpdate(index, updatedJob);
+  function handleSave(updatedEdu) {
+    onUpdate(index, updatedEdu);
     setEditing(false);
   }
 
   return (
     <div className="entry">
       {editing ? (
-        <EditExperience
-          job={job}
+        <EditEducation
+          edu={edu}
           onSave={handleSave}
           onCancel={() => setEditing(false)}
         />
       ) : (
         <>
           <p>
-            <strong>{job.position}</strong> — {job.company}
+            <strong>{edu.title}</strong>
           </p>
-          <p>
-            {job.dateFrom} – {job.dateUntil}
-          </p>
-          <p>{job.responsibilities}</p>
+          <p>{edu.school}</p>
+          <p>{edu.date}</p>
 
           <div className="entry-actions">
             <button onClick={() => setEditing(true)}>Edit</button>

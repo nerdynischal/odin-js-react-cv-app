@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./styles/App.css";
+import EducationItem from "./components/EducationItem.jsx";
 import ExperienceItem from "./components/ExperienceItem.jsx";
 import GeneralInfo from "./components/GeneralInfo.jsx";
 import Education from "./components/Education.jsx";
@@ -8,7 +9,7 @@ import PracticalExperience from "./components/PracticalExperience.jsx";
 function App() {
   // store submitted data centrally so preview can use it
   const [generalData, setGeneralData] = useState(null);
-  const [educationData, setEducationData] = useState(null);
+  const [educationData, setEducationData] = useState([]);
   const [practicalData, setPracticalData] = useState([]);
 
   function updateExperience(index, updatedJob) {
@@ -21,13 +22,25 @@ function App() {
     setPracticalData((prev) => prev.filter((_, i) => i !== index));
   }
 
+  function updateEducation(index, updatedEdu) {
+    setEducationData((prev) =>
+      prev.map((edu, i) => (i === index ? updatedEdu : edu))
+    );
+  }
+
+  function deleteEducation(index) {
+    setEducationData((prev) => prev.filter((_, i) => i !== index));
+  }
+
   return (
     <div className="app-container">
       {/* Sidebar with forms */}
       <aside className="sidebar">
         <h1>CV Builder</h1>
         <GeneralInfo onSubmit={setGeneralData} />
-        <Education onSubmit={setEducationData} />
+        <Education
+          onSubmit={(edu) => setEducationData((prev) => [...prev, edu])}
+        />
         <PracticalExperience
           onSubmit={(job) => setPracticalData((prev) => [...prev, job])}
         />
@@ -43,14 +56,16 @@ function App() {
 
         <section>
           <h2>Education</h2>
-          {educationData ? (
-            <>
-              <p>
-                <strong>{educationData.title}</strong>
-              </p>
-              <p>{educationData.school}</p>
-              <p>{educationData.date}</p>
-            </>
+          {educationData.length > 0 ? (
+            educationData.map((edu, index) => (
+              <EducationItem
+                key={index}
+                edu={edu}
+                index={index}
+                onUpdate={updateEducation}
+                onDelete={deleteEducation}
+              />
+            ))
           ) : (
             <p>No education added yet.</p>
           )}

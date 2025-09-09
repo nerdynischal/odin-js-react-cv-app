@@ -123,3 +123,36 @@ input[placeholder],
 textarea[placeholder] {
   opacity: 0.7;
 }
+
+.entry {
+  position: relative;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.entry-actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.entry:hover .entry-actions {
+  opacity: 1;
+}
+
+.entry-actions button {
+  background: none;
+  border: none;
+  color: #0073e6;
+  cursor: pointer;
+  font-size: 0.85rem;
+  margin-left: 8px;
+  text-decoration: underline;
+}
+
+.entry-actions button:hover {
+  color: #005bb5;
+}
