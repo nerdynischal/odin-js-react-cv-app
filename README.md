@@ -1,12 +1,22 @@
-# React + Vite
+# CV Builder React App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple React application to create and preview a professional CV in real-time from The Odin Project.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Add **General Information**: name, email, phone.
+- Add multiple **Education** entries with school, title, and dates.
+- Add multiple **Practical Experience** entries with company, position, responsibilities, and dates.
+- **Live CV Preview** updates on submission.
+- **Edit/Delete** entries directly from the preview (hover to reveal).
 
-## Expanding the ESLint configuration
+## Usage
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Fill out forms in the left sidebar.
+2. Submit entries to see them appear in the CV preview on the right.
+3. Hover over entries to edit or delete them.
+4. Repeat to add multiple education or experience entries.
+
+## Live Demo
+
+Check out the live app here: [Your Live CV Builder](https://your-deployment-url.com)
