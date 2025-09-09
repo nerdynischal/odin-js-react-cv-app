@@ -19,4 +19,4 @@ A simple React application to create and preview a professional CV in real-time 
 
 ## Live Demo
 
-Check out the live app here: [Your Live CV Builder](https://your-deployment-url.com)
+Check out the live app here: [Basic CV Builder](https://odin-js-react-cv-app.vercel.app/)
