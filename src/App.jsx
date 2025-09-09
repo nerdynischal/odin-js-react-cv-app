@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./styles/App.css";
+import ExperienceItem from "./components/ExperienceItem.jsx";
 import GeneralInfo from "./components/GeneralInfo.jsx";
 import Education from "./components/Education.jsx";
 import PracticalExperience from "./components/PracticalExperience.jsx";
@@ -8,7 +9,17 @@ function App() {
   // store submitted data centrally so preview can use it
   const [generalData, setGeneralData] = useState(null);
   const [educationData, setEducationData] = useState(null);
-  const [practicalData, setPracticalData] = useState(null);
+  const [practicalData, setPracticalData] = useState([]);
+
+  function updateExperience(index, updatedJob) {
+    setPracticalData((prev) =>
+      prev.map((job, i) => (i === index ? updatedJob : job))
+    );
+  }
+
+  function deleteExperience(index) {
+    setPracticalData((prev) => prev.filter((_, i) => i !== index));
+  }
 
   return (
     <div className="app-container">
@@ -17,7 +28,9 @@ function App() {
         <h1>CV Builder</h1>
         <GeneralInfo onSubmit={setGeneralData} />
         <Education onSubmit={setEducationData} />
-        <PracticalExperience onSubmit={setPracticalData} />
+        <PracticalExperience
+          onSubmit={(job) => setPracticalData((prev) => [...prev, job])}
+        />
       </aside>
 
       {/* Main CV Preview */}
@@ -45,17 +58,16 @@ function App() {
 
         <section>
           <h2>Experience</h2>
-          {practicalData ? (
-            <>
-              <p>
-                <strong>{practicalData.position}</strong> —{" "}
-                {practicalData.company}
-              </p>
-              <p>
-                {practicalData.dateFrom} – {practicalData.dateUntil}
-              </p>
-              <p>{practicalData.responsibilities}</p>
-            </>
+          {practicalData.length > 0 ? (
+            practicalData.map((job, index) => (
+              <ExperienceItem
+                key={index}
+                job={job}
+                index={index}
+                onUpdate={updateExperience}
+                onDelete={deleteExperience}
+              />
+            ))
           ) : (
             <p>No experience added yet.</p>
           )}
